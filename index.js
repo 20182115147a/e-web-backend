@@ -7,7 +7,7 @@ import cors from 'cors'
 import { fileURLToPath } from 'url'
 import path, {dirname } from 'path'
 const corsOptions = {
-  origin: 'https://e-web-frontend.vercel.app/'
+  origin: 'https://e-web-frontend.vercel.app'
 }
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
