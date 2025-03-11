@@ -6,13 +6,10 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import { fileURLToPath } from 'url'
 import path, {dirname } from 'path'
-const corsOptions = {
-  origin: 'http://localhost:5173'
-}
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 mongoose.connect('mongodb+srv://Abc123456:Abc123456@cluster0.mgsmx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
-app.use(cors(corsOptions))
 app.use(express.json());
 app.use('/public/uploads', express.static(path.join(__dirname, 'public/uploads')))
 routes(app)
