@@ -1,17 +1,23 @@
 import express  from 'express'
 const router = express.Router();
 import multer from 'multer';
-import path from 'path'
+import cloudinary from 'cloudinary'
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import userController from '../controllers/userControllers.js'
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'public/uploads/');
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname));
-    },
-  });
+cloudinary.config({
+  cloud_name: 'dinpdsnlv', 
+  api_key: '756175383215195',       
+  api_secret: 'SWlTZaBrIznYwEOsRKq1bRIvh9I'  
+});
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'uploads',  
+    allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'pdf'], 
+  },
+});
+
 const upload = multer({ storage });
 
 router.post('/login',userController.login)
