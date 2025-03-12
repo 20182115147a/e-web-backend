@@ -3,7 +3,7 @@ const router = express.Router();
 import productControllers from '../controllers/productControllers.js';
 import multer from 'multer';
 
-import cloudinary from 'cloudinary'
+import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary';
 
 cloudinary.config({
@@ -14,12 +14,10 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'uploads',  
-    allowed_formats: ['jpg', 'jpeg', 'png', 'gif', 'pdf'], 
+    folder: 'uploads'
   },
 });
-const upload = multer({ storage });
-
+const upload = multer({ storage: storage });
 router.get('/', productControllers.getProductBySort)
 
 router.get('/getall', productControllers.getProducts)

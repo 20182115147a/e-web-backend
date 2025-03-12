@@ -48,18 +48,13 @@ class ProductControllers {
           res.status(500).json({ message: "Lỗi server", error: error.message });
         }
       }
-      async createProduct  (req, res){
-
+      async createProduct  (req, res,next){
         let images = ''
         if (req.files) {
          images = req.files.map((file) => {
-          console.log(file.path)
             return file.path
-
           })
         }
-        console.log(req.files)
-        console.log(images)
         const { name, description, price, category,seller, stock } = req.body;
    
         try {
