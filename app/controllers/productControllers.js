@@ -49,12 +49,17 @@ class ProductControllers {
         }
       }
       async createProduct  (req, res){
+
         let images = ''
         if (req.files) {
          images = req.files.map((file) => {
+          console.log(file.path)
             return file.path
+
           })
         }
+        console.log(req.files)
+        console.log(images)
         const { name, description, price, category,seller, stock } = req.body;
    
         try {
